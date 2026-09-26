@@ -413,7 +413,7 @@ class DataCollector():
         dic["ORGANO"] = dic["ORGANO"].replace('/', '_')
         dic["ORGANO"] = dic["ORGANO"].replace('"', '')
         
-        output_folder_path = f"clean_data/{dic['LEGISLATURA']}/{(''.join(dic['ORGANO'].split(',')[0:2]))}/"
+        output_folder_path = f"data/{dic['LEGISLATURA']}/{(''.join(dic['ORGANO'].split(',')[0:2]))}/"
         if not os.path.exists(output_folder_path):
             os.makedirs(output_folder_path)
 
@@ -530,14 +530,14 @@ def main(data: list, data_collector: DataCollector, n_workers: int, results_file
 
 if __name__ == '__main__':
     
-    folder_path = os.path.join('.', 'data/legislaturas')
+    folder_path = os.path.join('.', 'raw_data/legislaturas')
     
     data_collector = DataCollector()
     data, pdf_noorator = data_collector.read_files(folder_path)
 
     loader = PartyLoader()
-    loader.load_from_json_folder("data/organos_congreso")
-    loader.load_from_csvs(["data/diputados/diputados11.csv", "data/diputados/diputados12.csv", "data/diputados/diputados13.csv", "data/diputados/diputados14.csv", "data/diputados/diputados15.csv", "data/senadores/senadores11.csv", "data/senadores/senadores12.csv", "data/senadores/senadores13.csv", "data/senadores/senadores14.csv", "data/senadores/senadores15.csv"])
+    loader.load_from_json_folder("raw_data/organos_congreso")
+    loader.load_from_csvs(["raw_data/diputados/diputados11.csv", "raw_data/diputados/diputados12.csv", "raw_data/diputados/diputados13.csv", "raw_data/diputados/diputados14.csv", "raw_data/diputados/diputados15.csv", "raw_data/senadores/senadores11.csv", "raw_data/senadores/senadores12.csv", "raw_data/senadores/senadores13.csv", "raw_data/senadores/senadores14.csv", "raw_data/senadores/senadores15.csv"])
     data_collector.loader = loader
 
     n_workers = 4

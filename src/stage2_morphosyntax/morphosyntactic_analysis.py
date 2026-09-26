@@ -220,7 +220,7 @@ def data_preparation(data: List[dict], output_dir: str, num_workers: int = os.cp
 
 if __name__ == "__main__":
     mp.set_start_method("spawn")
-    path = os.path.join(".", "clean_data")
+    path = os.path.join(".", "data")
     data = load_json_data(path)
 
     data_preparation(
